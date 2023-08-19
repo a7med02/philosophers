@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/04 15:49:47 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/19 17:56:28 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int ac, char **av)
         exit(0);
     }
     ft_parcer(av, ac);
-    // ft_init(av, ac, data);
+    ft_init(ac, av, &data);
     
     
 }
