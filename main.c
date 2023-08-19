@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/19 17:56:28 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/19 18:56:00 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void ft_parcer(char **av, int ac)
         }
         i++;
     }
-
 }
 
 int main(int ac, char **av)
 {
+    t_philo philo;
     t_data data;
     if(ac > 6 || ac < 5)
     {
@@ -45,7 +45,5 @@ int main(int ac, char **av)
         exit(0);
     }
     ft_parcer(av, ac);
-    ft_init(ac, av, &data);
-    
-    
+    ft_init(ac, av, &data, &philo);
 }
