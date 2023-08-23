@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:40:05 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/20 18:52:36 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/21 08:03:12 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_exit(t_philo *philo)
 	{
 		pthread_mutex_destroy(&philo->data->forks[i]);
 	}
-	pthread_mutex_destroy(&philo->data->lock);
 	pthread_mutex_destroy(&philo->data->write);
 }
 

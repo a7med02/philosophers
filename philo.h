@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:14 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/20 19:05:11 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:29:57 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <stdlib.h>
-
-struct s_data	data;
-typedef struct s_philo
-{
-	struct s_data	*data;
-	int				id;
-	int				eat_cont;
-	int				eating;//how many time he eat ?
-	long long		time_to_die;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
-}	t_philo;
 
 typedef struct s_data
 {
@@ -43,8 +31,20 @@ typedef struct s_data
 	long long		start_time;
 	pthread_mutex_t	*forks;//?mutexess
 	pthread_mutex_t	write;//when i want to write something..
-	pthread_mutex_t	lock;//when i have the both forks..
 }	t_data;
+
+typedef struct s_philo
+{
+	struct s_data	*data;
+	int				id;
+	int				eat_cont;
+	int				eating;//how many time he eat ?
+	long long		last_time;
+	pthread_mutex_t *m_last_time;
+	pthread_mutex_t m_eat;
+	
+}	t_philo;
+
 
 void		ft_init(int ac, char **av, t_data *data);
 int			ft_isdigit(char c);
@@ -52,4 +52,5 @@ void		*routine(void *arg);
 long long   get_time(void);
 void		ft_usleep(useconds_t time);
 int			ft_to_int(char *str);
+int check_if_death(t_philo *philo);
 #endif
