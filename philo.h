@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:14 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 10:52:27 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:23:05 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ typedef struct s_philo
 	int				eat_cont;
 	int				eating;
 	long long		last_time;
-	pthread_mutex_t	m_eat;
-	pthread_mutex_t	m_last_time;
 }	t_philo;
 
-void		ft_init(int ac, char **av, t_data *data);
+int		ft_init(int ac, char **av, t_data *data);
 int			ft_isdigit(char c);
 void		*routine(void *arg);
 long long	get_time(void);

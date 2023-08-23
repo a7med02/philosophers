@@ -6,14 +6,14 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 10:51:24 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:13:32 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdlib.h>
 
-void	ft_parcer(char **av, int ac)
+int	ft_parcer(char **av, int ac)
 {
 	int	k;
 	int	i;
@@ -28,24 +28,23 @@ void	ft_parcer(char **av, int ac)
 				k++;
 			else
 			{
-				printf("error\n");
-				exit(0);
+				printf("Erorr.\n");
+				exit(1);
 			}
 		}
 		i++;
 	}
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
+	if (!(data = malloc(sizeof(t_data))))
+		return(printf("data !..."), 1);
 	if (ac > 6 || ac < 5)
-	{
-		printf("too few parameter\n");
-		exit(0);
-	}
+		return (printf("to few argument  ..."), 1);
 	ft_parcer(av, ac);
 	ft_init(ac, av, data);
 }
