@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:14 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/22 21:29:57 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:26:55 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	long long		eat_time;
 	long long		sleep_time;
 	long long		start_time;
+	pthread_mutex_t m_eating;
+	pthread_mutex_t m_last;
 	pthread_mutex_t	*forks;//?mutexess
 	pthread_mutex_t	write;//when i want to write something..
 }	t_data;
@@ -40,8 +42,8 @@ typedef struct s_philo
 	int				eat_cont;
 	int				eating;//how many time he eat ?
 	long long		last_time;
-	pthread_mutex_t *m_last_time;
 	pthread_mutex_t m_eat;
+	pthread_mutex_t m_last_time;
 	
 }	t_philo;
 

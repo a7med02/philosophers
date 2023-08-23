@@ -1,6 +1,6 @@
 NAME = philo
 SRC = main.c init.c routine.c touls.c
-FLGS = -pthread -g
+FLGS = -pthread -g -fsanitize=thread
 CC = cc 
 RM = rm -rf
 OBJ = $(SRC:%.c=%.o)
@@ -10,7 +10,7 @@ all : $(NAME)
 	$(CC) $(FLGS)  -c $< -o $@
 
 $(NAME) : $(OBJ)
-	$(CC) $(FLG) $(OBJ)  -o $(NAME)
+	$(CC) $(FLGS) $(OBJ)  -o $(NAME)
 
 clean :
 	$(RM) $(OBJ)

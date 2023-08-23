@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/22 21:13:25 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 07:53:38 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ void	ft_parcer(char **av, int ac)
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data	*data;
 
+	data = malloc(sizeof(t_data));
 	if (ac > 6 || ac < 5)
 	{
 		printf("too few parameter\n");
 		exit(0);
 	}
 	ft_parcer(av, ac);
-	ft_init(ac, av, &data);
+	ft_init(ac, av, data);
 	
 }

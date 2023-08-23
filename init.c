@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:18:59 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/22 21:30:56 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:26:43 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,21 @@ void	start_philos(t_data *data, t_philo *philo)
 		pthread_detach(data->tid[i]);
 	}
 	check_if_death(philo);
-
 }
 
 int	init_philos(t_data *data)
 {
 	t_philo	*philo;
-	pthread_mutex_t ttttime;
 	int		i;
 
-	i = 0;
-	pthread_mutex_init(&ttttime, NULL);
+	i = -1;
 	if (!(data->tid	= malloc(sizeof(pthread_t) * data->philo_num)))
 		return (1);
 	if (!(data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num)))
 		return (1);
-	if (!(philo = malloc(sizeof(pthread_mutex_t) * data->philo_num)))
+	if (!(philo = malloc(sizeof(t_philo) * data->philo_num)))
 		return (1);
-	while (i < data->philo_num)
+	while (++i < data->philo_num)
 	{
 		philo[i].id = i + 1;
 		philo[i].last_time = get_time();
@@ -50,22 +47,12 @@ int	init_philos(t_data *data)
 		data->start_time = get_time();
 		pthread_mutex_init(&data->forks[i], NULL);
 		pthread_mutex_init(&philo[i].m_eat, NULL);
-		// pthread_mutex_init(&philo[i].m_last_time, NULL);
-		philo[i].m_last_time = &ttttime;
+		pthread_mutex_init(&philo[i].m_last_time, NULL);
 		philo[i].data = data;
-		i++;
 	}
-	// int  k = 0;
-	// while (k < 4)
-	// {
-	// 	printf("in\n");
-	// 	// printf("%d\n", data->philo_num);
-	// 	printf("%d\n", philo[k].data->philo_num);
-	// 	printf("%d\n", philo[k].id);
-	// 	k++;
-	// }
+	pthread_mutex_init(&data->m_eating, NULL);
+	pthread_mutex_init(&data->m_last, NULL);
 	start_philos(data, philo);
-
 	return (0);
 }
 
@@ -84,12 +71,12 @@ int	init_arg(int ac, char **av, t_data *data)
 		|| data->eat_time < 0 || data->sleep_time < 0)
 		return (1);
 	pthread_mutex_init(&data->write, NULL);
-	init_philos(data);
+	// init_philos(data);
 	return (0);
 }
 
 void	ft_init(int ac, char **av, t_data *data)
 {
 	init_arg(ac, av, data);
-	// init_philos(data);
+	init_philos(data);
 }
