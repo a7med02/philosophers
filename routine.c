@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:19:39 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 11:40:34 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:22:52 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,19 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
+int	cheak_meals(t_philo *philo, int i)
+{
+	pthread_mutex_lock(&philo->data->m_eating);
+	if (philo[i].eating > philo->data->meals_nb
+		&& philo->data->meals_nb > 0)
+	{
+		pthread_mutex_unlock(&philo->data->m_eating);
+		return (0);
+	}
+	pthread_mutex_unlock(&philo->data->m_eating);
+	return (1);
+}
+
 int	check_if_death(t_philo *philo)
 {
 	int	i;
@@ -79,14 +92,8 @@ int	check_if_death(t_philo *philo)
 				return (1);
 			}
 			pthread_mutex_unlock(&philo->data->m_last);
-			pthread_mutex_lock(&philo->data->m_eating);
-			if (philo[i].eating > philo->data->meals_nb
-				&& philo->data->meals_nb > 0)
-			{
-				pthread_mutex_unlock(&philo->data->m_eating);
+			if (!cheak_meals(philo, i))
 				return (1);
-			}
-			pthread_mutex_unlock(&philo->data->m_eating);
 			i++;
 		}
 	}

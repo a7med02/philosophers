@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 13:13:32 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:23:59 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	t_data	*data;
 
 	if (!(data = malloc(sizeof(t_data))))
-		return(printf("data !..."), 1);
+		return (printf("data !..."), 1);
 	if (ac > 6 || ac < 5)
 		return (printf("to few argument  ..."), 1);
 	ft_parcer(av, ac);

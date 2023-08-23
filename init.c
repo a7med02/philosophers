@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:18:59 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 13:30:10 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:25:35 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	init_philos(t_data *data)
 	int		i;
 
 	i = -1;
-	if (!(data->tid	= malloc(sizeof(pthread_t) * data->philo_num)))
-		return (printf("tid !\n"),1);
+	if (!(data->tid = malloc(sizeof(pthread_t) * data->philo_num)))
+		return (printf("tid !\n"), 1);
 	if (!(data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num)))
-		return (printf("forks !\n"),1);
+		return (printf("forks !\n"), 1);
 	if (!(philo = malloc(sizeof(t_philo) * data->philo_num)))
-		return (printf("philo !\n"),1);
+		return (printf("philo !\n"), 1);
 	while (++i < data->philo_num)
 	{
 		philo[i].id = i + 1;
@@ -55,7 +55,6 @@ int	init_philos(t_data *data)
 	return (0);
 }
 
-
 int	ft_init(int ac, char **av, t_data *data)
 {
 	if (ac == 6)
@@ -69,5 +68,5 @@ int	ft_init(int ac, char **av, t_data *data)
 	data->die = 0;
 	pthread_mutex_init(&data->write, NULL);
 	init_philos(data);
-	return(0);
+	return (0);
 }
