@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:18:59 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 10:26:43 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:29:43 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ int	init_arg(int ac, char **av, t_data *data)
 		|| data->eat_time < 0 || data->sleep_time < 0)
 		return (1);
 	pthread_mutex_init(&data->write, NULL);
-	// init_philos(data);
+	init_philos(data);
 	return (0);
 }
 
 void	ft_init(int ac, char **av, t_data *data)
 {
 	init_arg(ac, av, data);
-	init_philos(data);
 }

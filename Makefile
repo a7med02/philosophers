@@ -1,6 +1,6 @@
 NAME = philo
 SRC = main.c init.c routine.c touls.c
-FLGS = -pthread -g -fsanitize=thread
+FLGS = -pthread -g 
 CC = cc 
 RM = rm -rf
 OBJ = $(SRC:%.c=%.o)
