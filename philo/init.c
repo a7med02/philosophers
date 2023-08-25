@@ -6,27 +6,30 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:18:59 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/24 11:39:21 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:38:29 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	start_philos(t_data *data, t_philo *philo)
+int	start_philos(t_data *data, t_philo *philo)
 {
 	int	i;
 
 	i = -1;
-	pthread_mutex_init(&data->m_eating, NULL);
-	pthread_mutex_init(&data->m_last, NULL);
+	if (0 != pthread_mutex_init(&data->m_eating, NULL))
+		return (printf("mutex eating!\n"), 1);
+	if (0 != pthread_mutex_init(&data->m_last, NULL))
+		return (printf("mutex last eat!\n"), 1);
 	while (++i < data->philo_num)
 	{
 		if (pthread_create(&data->tid[i], NULL, routine, &philo[i]) != 0)
-			return ;
+			return (printf("mutex creat!\n"), 1);
 		if (pthread_detach(data->tid[i]) != 0)
-			return ;
+			return (printf("mutex detach!\n"), 1);
 	}
 	check_if_death(philo);
+	return (0);
 }
 
 int	init_philos(t_data *data)
@@ -50,7 +53,8 @@ int	init_philos(t_data *data)
 		philo[i].last_time = get_time();
 		philo[i].eating = 0;
 		data->start_time = get_time();
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (0 != pthread_mutex_init(&data->forks[i], NULL))
+			return (printf("mutex fork!\n"), 1);
 		philo[i].data = data;
 	}
 	start_philos(data, philo);
@@ -67,7 +71,8 @@ int	ft_init(int ac, char **av, t_data *data)
 	data->death_time = (long long)ft_to_int(av[2]);
 	data->eat_time = (long long)ft_to_int(av[3]);
 	data->sleep_time = (long long)ft_to_int(av[4]);
-	pthread_mutex_init(&data->write, NULL);
+	if (0 != (pthread_mutex_init(&data->write, NULL)))
+		return (printf("mutex !\n"), 1);
 	init_philos(data);
 	return (0);
 }
