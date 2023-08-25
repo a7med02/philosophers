@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:14 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/24 13:32:36 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/25 22:59:25 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct s_data
 	long long		eat_time;
 	long long		sleep_time;
 	long long		start_time;
-	pthread_mutex_t	m_eating;
-	pthread_mutex_t	m_last;
+	int				philos_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write;
+	pthread_mutex_t	access;
 }	t_data;
 
 typedef struct s_philo
@@ -50,4 +50,5 @@ long long	get_time(void);
 void		ft_usleep(useconds_t time);
 int			ft_to_int(char *str);
 int			check_if_death(t_philo *philo);
+void		clean_up(t_philo *philo);
 #endif

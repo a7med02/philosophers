@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:40:05 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/24 11:35:53 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/25 22:29:06 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,9 @@ int	ft_to_int(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 		r = r * 10 + (str[i++] - 48);
 	return (r);
+}
+
+void	clean_up(t_philo *philo)
+{
+	free(philo);
 }

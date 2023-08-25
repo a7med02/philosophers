@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/24 11:34:38 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/25 22:58:18 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ int	main(int ac, char **av)
 	if (!data)
 		return (printf("data !..."), 1);
 	if (ac > 6 || ac < 5)
-		return (printf("to few argument  ..."), 1);
+		return (free(data), printf("to few argument  ..."), 1);
 	if (ft_parcer(av, ac) == -1)
 		return (0);
 	ft_init(ac, av, data);
+	free(data->forks);
+	free(data->tid);
+	free(data);
 }
