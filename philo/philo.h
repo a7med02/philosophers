@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:38:14 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 21:24:23 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:32:36 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_data
 	pthread_t		*tid;
 	int				philo_num;
 	int				meals_nb;
-	int				die;
 	long long		death_time;
 	long long		eat_time;
 	long long		sleep_time;

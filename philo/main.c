@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:37:48 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 21:23:59 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:34:38 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	ft_parcer(char **av, int ac)
 			if ((ft_isdigit(av[i][k]) || av[i][k] == 32) && av[i][0] != 48)
 				k++;
 			else
-			{
-				printf("Erorr.\n");
-				exit(1);
-			}
+				return (printf("Erorr.\n"), -1);
 		}
 		i++;
 	}
@@ -41,10 +38,12 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 
-	if (!(data = malloc(sizeof(t_data))))
+	data = malloc(sizeof(t_data));
+	if (!data)
 		return (printf("data !..."), 1);
 	if (ac > 6 || ac < 5)
 		return (printf("to few argument  ..."), 1);
-	ft_parcer(av, ac);
+	if (ft_parcer(av, ac) == -1)
+		return (0);
 	ft_init(ac, av, data);
 }

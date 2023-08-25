@@ -1,6 +1,6 @@
-NAME = philo
+NAME = philosopher
 SRC = main.c init.c routine.c touls.c
-FLGS = -pthread -g 
+FLGS = -Wall -Wextra -Werror -pthread -g
 CC = cc 
 RM = rm -rf
 OBJ = $(SRC:%.c=%.o)

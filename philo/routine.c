@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 18:19:39 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 21:22:52 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:18:39 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	message(char *msg, t_philo *philo)
 	pthread_mutex_unlock(&philo->data->write);
 }
 
-void	eating(t_philo *philo, long long start)
+void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->id - 1]);
 	message("has taken a fork", philo);
@@ -47,15 +47,13 @@ void	eating(t_philo *philo, long long start)
 
 void	*routine(void *arg)
 {
-	long long	start;
 	t_philo		*philo;
 
-	start = get_time();
 	philo = arg;
 	if (philo->id % 2 == 0)
 		ft_usleep(50);
 	while (1)
-		eating(philo, start);
+		eating(philo);
 	return (NULL);
 }
 

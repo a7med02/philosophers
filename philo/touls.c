@@ -6,7 +6,7 @@
 /*   By: abouregb <abouregb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:40:05 by abouregb          #+#    #+#             */
-/*   Updated: 2023/08/23 21:26:14 by abouregb         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:35:53 by abouregb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ void	ft_usleep(useconds_t time)
 	now = get_time();
 	while (get_time() - now < time)
 		usleep(time / 10);
-}
-
-void	ft_exit(t_philo *philo)
-{
-	int	i;
-
-	i = -1;
-	while (++i < philo->data->philo_num)
-	{
-		pthread_mutex_destroy(&philo->data->forks[i]);
-	}
-	pthread_mutex_destroy(&philo->data->write);
 }
 
 int	ft_to_int(char *str)
